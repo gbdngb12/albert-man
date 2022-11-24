@@ -7,7 +7,6 @@ Synopsis: <trigger> <query>"""
 from albert import *
 import os
 import re
-import subprocess
 
 __title__ = "man"
 __version__ = "0.1.1"
