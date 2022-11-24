@@ -23,6 +23,12 @@ def initialize() :
         mandb.append(re.sub(".(\w{1,10}.gz)|(.\d$)", "", s))
         
 
+#def readman(query) :
+#    command = ['man']
+#    command.append(query)
+#    info(command)
+#    return (subprocess.check_output(command)).decode('utf-8')
+        
 def defaultItem(query):
     item = Item()
     item.icon = iconPath
@@ -46,6 +52,7 @@ def search(query, result) :
         item.completion = 'man %s' % match
         item.addAction(TermAction(text='show Manual',script="man %s" % match))
         item.addAction(ClipAction(text='command copy to Clipboard', clipboardText='man %s' % match))
+        #item.addAction(ClipAction(text='copy to Clipboard', clipboardText=readman(match)))
         result.append(item)
 
 def handleQuery(query) :
