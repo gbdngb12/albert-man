@@ -6,7 +6,9 @@ Albert man page Python Extension
 - Python Standard library [**os**](https://docs.python.org/3/library/) module
 
 # Installation
-```git clone https://github.com/gbdngb12/albert-man.git ~/.local/share/albert/org.albert.extension.python/modules/man```
+```
+git clone https://github.com/gbdngb12/albert-man.git ~/.local/share/albert/org.albert.extension.python/modules/man
+```
 
 # Usage:
 ```man keyword```
