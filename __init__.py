@@ -1,6 +1,7 @@
 from albert import *
 import os
 import re
+import subprocess
 
 __title__ = "Linux manual"
 __version__ = "0.1.1"
@@ -14,14 +15,14 @@ manPath = '/usr/share/man/man' # default man1, man2, man3, ... , man9
 mandb = []
 
 def initialize() :
-    # tmp ['*.[1-9].gz', '*.[1-9].gz', ..]
     tmp = os.listdir(manPath+str(1))
     for i in range(2,9) :
         tmp = list(set(tmp + os.listdir(manPath+ str(i))))
     for s in tmp :
         # remove File extension
-        mandb.append(re.sub(".[1-9].gz", "", s))
-    
+        mandb.append(re.sub(".(\w{1,10}.gz)|(.\d$)", "", s))
+        
+
 def defaultItem(query):
     item = Item()
     item.icon = iconPath
@@ -37,12 +38,14 @@ def search(query, result) :
     if len(matching) == 0:
         return result.append(defaultItem(query))
     for match in matching :
+        #info(match)
         item = Item()
         item.icon = iconPath
         item.text = 'man %s' % match
         item.subtext = 'Show Linux Manual'
         item.completion = 'man %s' % match
         item.addAction(TermAction(text='show Manual',script="man %s" % match))
+        item.addAction(ClipAction(text='command copy to Clipboard', clipboardText='man %s' % match))
         result.append(item)
 
 def handleQuery(query) :
@@ -56,4 +59,3 @@ def handleQuery(query) :
     else :
         search(query.string, results)
         return results
-
