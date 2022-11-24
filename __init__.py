@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
+
+"""This is a Simple Linux man page extension
+
+Synopsis: <trigger> <query>"""
+
 from albert import *
 import os
 import re
 import subprocess
 
-__title__ = "Linux manual"
+__title__ = "man"
 __version__ = "0.1.1"
 __triggers__ = "man "
 __authors__ = "dong"
